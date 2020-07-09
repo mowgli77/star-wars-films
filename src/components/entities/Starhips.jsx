@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import ItemOk from "../common/ItemOk";
 import {connect} from "react-redux";
-import {actions, getEpisodeStarshipsThunk} from "../../redux/reducer";
 
 
 const Starships = ({film, ...props}) => {
@@ -11,9 +10,7 @@ const Starships = ({film, ...props}) => {
     const [hiddenStarshipName, setHiddenStarshipName] = useState(false)
 
     const provideCharacters = () => {
-        props.cancelStarships()
         setStarshipInfo(!isStarship)
-        film.starships.map(u => props.getEpisodeStarshipsThunk(u))
     }
     const viewCharacter = (characters) => {
         setStarshipName(characters)
@@ -22,9 +19,9 @@ const Starships = ({film, ...props}) => {
 
     return (
             <div className={"entity-item"}>
-                <span onClick={provideCharacters}>Starships: </span>
+                <span onClick={provideCharacters}>Starships </span>
                 {isStarship && <ul className={"entity-item__list"}>
-                    {props.episodeStarships.map((p) =>
+                    {props.episodeStarships.filter(p => film.starships.includes(p.url)).map(p =>
                         <li><span onClick={() => viewCharacter(p.name)}>
                                     {p.name}
                                 </span>{starshipName === p.name && hiddenStarshipName && <ItemOk p={p}/>}
@@ -36,6 +33,5 @@ const Starships = ({film, ...props}) => {
 const mapStateToProps = (state) => ({
     episodeStarships: state.star.episodeStarships
 })
-const cancelStarships = actions.cancelStarships
 
-export default connect(mapStateToProps, {getEpisodeStarshipsThunk, cancelStarships})(Starships);
+export default connect(mapStateToProps, {})(Starships);

@@ -8,15 +8,10 @@ import episode6 from "../images/episode6.jpg"
 
 const GET_FILMS = 'GET_FILMS';
 const EPISODE_PLANETS = 'EPISODE_PLANETS'
-const CANCEL_PLANETS = 'CANCEL_PLANETS'
 const EPISODE_CHARACTERS = 'EPISODE_CHARACTERS'
-const CANCEL_CHARACTERS = 'CANCEL_CHARACTERS'
 const EPISODE_STARHIPS = 'EPISODE_STARHIPS'
-const CANCEL_STARHIPS = 'CANCEL_STARHIPS'
 const EPISODE_VEHICLE = 'EPISODE_VEHICLE'
-const CANCEL_VEHICLE = 'CANCEL_VEHICLE'
 const EPISODE_SPECIES = 'EPISODE_SPECIES'
-const CANCEL_SPECIES = 'CANCEL_SPECIES'
 
 
 let initialState = {
@@ -45,52 +40,27 @@ export const reducer = (state = initialState, action) => {
         case EPISODE_PLANETS:
             return {
                 ...state,
-                episodePlanets: [...state.episodePlanets, action.planet]
+                episodePlanets: state.episodePlanets.some(p => p.name === action.planet.name) ? state.episodePlanets :  [...state.episodePlanets, action.planet]
             }
         case EPISODE_CHARACTERS:
             return {
                 ...state,
-                episodeCharacters: [...state.episodeCharacters, action.character]
+                episodeCharacters: state.episodeCharacters.some(p => p.name === action.character.name) ? state.episodeCharacters : [...state.episodeCharacters, action.character]
             }
         case EPISODE_STARHIPS:
             return {
                 ...state,
-                episodeStarships: [...state.episodeStarships, action.starship]
+                episodeStarships: state.episodeStarships.some(p => p.name === action.starship.name) ? state.episodeStarships : [...state.episodeStarships, action.starship]
             }
         case EPISODE_VEHICLE:
             return {
                 ...state,
-                episodeVehicles: [...state.episodeVehicles, action.vehicle]
+                episodeVehicles: state.episodeVehicles.some(p => p.name === action.vehicle.name) ? state.episodeVehicles : [...state.episodeVehicles, action.vehicle]
             }
         case EPISODE_SPECIES:
             return {
                 ...state,
-                episodeSpecies: [...state.episodeSpecies, action.species]
-            }
-        case CANCEL_PLANETS:
-            return {
-                ...state,
-                episodePlanets: []
-            }
-        case CANCEL_CHARACTERS:
-            return {
-                ...state,
-                episodeCharacters: []
-            }
-        case CANCEL_STARHIPS:
-            return {
-                ...state,
-                episodeStarships: []
-            }
-        case CANCEL_STARHIPS:
-            return {
-                ...state,
-                episodeVehicles: []
-            }
-        case CANCEL_SPECIES:
-            return {
-                ...state,
-                episodeSpecies: []
+                episodeSpecies: state.episodeSpecies.some(p => p.name === action.species.name) ? state.episodeSpecies : [...state.episodeSpecies, action.species]
             }
 
         default:
@@ -102,15 +72,10 @@ export const reducer = (state = initialState, action) => {
 export const actions = {
     getFilms: (films) => ({type: GET_FILMS, films}),
     getPlanets: (planet) => ({type: EPISODE_PLANETS, planet}),
-    cancelPlanets: () => ({type: CANCEL_PLANETS}),
     getCharacters: (character) => ({type: EPISODE_CHARACTERS, character}),
-    cancelCharacters: () => ({type: CANCEL_CHARACTERS}),
     getStarships: (starship) => ({type: EPISODE_STARHIPS, starship}),
-    cancelStarships: () => ({type: CANCEL_STARHIPS}),
     getVehicles: (vehicle) => ({type: EPISODE_VEHICLE, vehicle}),
-    cancelVehicles: () => ({type: CANCEL_VEHICLE}),
     getSpecies: (species) => ({type: EPISODE_SPECIES, species}),
-    cancelSpecies: () => ({type: CANCEL_SPECIES}),
 }
 
 export const getFilmsThunk = () => async (dispatch) => {

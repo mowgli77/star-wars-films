@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import ItemOk from "../common/ItemOk";
-import {actions, getEpisodeCharactersThunk} from "../../redux/reducer";
 import {connect} from "react-redux";
 
 
@@ -11,9 +10,7 @@ const Characters = ({film, ...props}) => {
     const [hiddenCharacterName, setHiddenCharacterName] = useState(false)
 
     const provideCharacters = () => {
-        props.cancelCharacters()
         setCharactersInfo(!isCharacter)
-        film.characters.map(u => props.getEpisodeCharactersThunk(u))
     }
     const viewCharacter = (characters) => {
         setCharacterName(characters)
@@ -24,7 +21,7 @@ const Characters = ({film, ...props}) => {
             <div className={"entity-item"}>
                 <span onClick={provideCharacters}>Characters </span>
                 {isCharacter && <ul className={"entity-item__list"}>
-                    {props.episodeCharacters.map((p) =>
+                    {props.episodeCharacters.filter(p => film.characters.includes(p.url)).map(p =>
                         <li><span onClick={() => viewCharacter(p.name)}>
                                     {p.name}
                                 </span>{characterName === p.name && hiddenCharacterName && <ItemOk p={p}/>}
@@ -36,6 +33,5 @@ const Characters = ({film, ...props}) => {
 const mapStateToProps = (state) => ({
     episodeCharacters: state.star.episodeCharacters
 })
-const cancelCharacters = actions.cancelCharacters
 
-export default connect(mapStateToProps, {getEpisodeCharactersThunk, cancelCharacters})(Characters)
+export default connect(mapStateToProps, {})(Characters)
