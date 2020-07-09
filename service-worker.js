@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/star-wars-films/precache-manifest.ed261da47b849cb9face5f8844df3456.js"
+  "/star-wars-films/precache-manifest.f24dde6800cf39db5f1ff9ab5646b0c6.js"
 );
 
 self.addEventListener('message', (event) => {
