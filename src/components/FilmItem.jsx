@@ -4,7 +4,7 @@ import EpisodeItem from "./EpisodeItems";
 const FilmItem = ({film, ...props}) => {
 
     useEffect(() => {
-        film.planets.map(u => props.getEpisodePlanetsThunk(u))
+        // film.planets.map(u => props.getEpisodePlanetsThunk(u))
         film.characters.map(u => props.getEpisodeCharactersThunk(u))
         film.starships.map(u => props.getEpisodeStarshipsThunk(u))
         film.vehicles.map(u => props.getEpisodeVehiclesThunk(u))

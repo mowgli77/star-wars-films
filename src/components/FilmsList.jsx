@@ -19,6 +19,11 @@ const FilmsList = (props) => {
         props.getFilmsThunk()
     }, [])
 
+    useEffect(() => {
+        props.films.map(p => p.planets.map(u => props.getEpisodePlanetsThunk(u)))
+        console.log(props.films.map(p => p.planets))
+    }, [props.films])
+
     const filterFunction = (text) => {
         let filtredFilms = props.films.filter(s => s.title.toUpperCase().includes(text))
         if (text.trim().length == 0) {
