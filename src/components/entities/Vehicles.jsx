@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ItemOk from "../common/ItemOk";
 import {connect} from "react-redux";
+import {getEpisodeVehiclesThunk} from "../../redux/reducer";
 
 
 const Vehicles = ({film, ...props}) => {
@@ -11,6 +12,7 @@ const Vehicles = ({film, ...props}) => {
 
     const provideCharacters = () => {
         setVehiclesInfo(!isVehicles)
+        film.vehicles.map(u => props.getEpisodeVehiclesThunk(u))
     }
     const viewCharacter = (characters) => {
         setVehiclesName(characters)
@@ -34,4 +36,4 @@ const mapStateToProps = (state) => ({
     episodeVehicles: state.star.episodeVehicles
 })
 
-export default connect(mapStateToProps, {})(Vehicles);
+export default connect(mapStateToProps, {getEpisodeVehiclesThunk})(Vehicles);

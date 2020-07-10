@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ItemOk from "../common/ItemOk";
 import {connect} from "react-redux";
+import {getEpisodeCharactersThunk} from "../../redux/reducer";
 
 
 const Characters = ({film, ...props}) => {
@@ -11,6 +12,7 @@ const Characters = ({film, ...props}) => {
 
     const provideCharacters = () => {
         setCharactersInfo(!isCharacter)
+        film.characters.map(u => props.getEpisodeCharactersThunk(u))
     }
     const viewCharacter = (characters) => {
         setCharacterName(characters)
@@ -34,4 +36,4 @@ const mapStateToProps = (state) => ({
     episodeCharacters: state.star.episodeCharacters
 })
 
-export default connect(mapStateToProps, {})(Characters)
+export default connect(mapStateToProps, {getEpisodeCharactersThunk})(Characters)

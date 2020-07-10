@@ -1,13 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
-import {
-    getEpisodeCharactersThunk,
-    getEpisodePlanetsThunk,
-    getEpisodeSpeciesThunk,
-    getEpisodeStarshipsThunk,
-    getEpisodeVehiclesThunk,
-    getFilmsThunk
-} from "../redux/reducer";
+import {getFilmsThunk} from "../redux/reducer";
 import FilmItem from "./FilmItem";
 
 const FilmsList = (props) => {
@@ -19,14 +12,9 @@ const FilmsList = (props) => {
         props.getFilmsThunk()
     }, [])
 
-    useEffect(() => {
-        props.films.map(p => p.planets.map(u => props.getEpisodePlanetsThunk(u)))
-        console.log(props.films.map(p => p.planets))
-    }, [props.films])
-
     const filterFunction = (text) => {
         let filtredFilms = props.films.filter(s => s.title.toUpperCase().includes(text))
-        if (text.trim().length == 0) {
+        if (text.trim().length === 0) {
             setCurrentFilms(props.films)
         } else {
             setCurrentFilms(filtredFilms)
@@ -57,11 +45,6 @@ const FilmsList = (props) => {
                                                  addInfoId={addInfoId}
                                                  getFilmInfo={getFilmInfo}
                                                  images={props.images}
-                                                 getEpisodePlanetsThunk={props.getEpisodePlanetsThunk}
-                                                 getEpisodeCharactersThunk={props.getEpisodeCharactersThunk}
-                                                 getEpisodeStarshipsThunk={props.getEpisodeStarshipsThunk}
-                                                 getEpisodeVehiclesThunk={props.getEpisodeVehiclesThunk}
-                                                 getEpisodeSpeciesThunk={props.getEpisodeSpeciesThunk}
                 />)}
             </div>
         </div>
@@ -75,5 +58,5 @@ const mapStateToProps = (state) => ({
 
 
 export default connect(mapStateToProps, {
-    getFilmsThunk, getEpisodePlanetsThunk, getEpisodeCharactersThunk, getEpisodeStarshipsThunk, getEpisodeVehiclesThunk, getEpisodeSpeciesThunk
+    getFilmsThunk
 })(FilmsList);
