@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/star-wars-films/static/css/main.d599a5be.chunk.css",
-    "main.js": "/star-wars-films/static/js/main.04447b43.chunk.js",
-    "main.js.map": "/star-wars-films/static/js/main.04447b43.chunk.js.map",
+    "main.js": "/star-wars-films/static/js/main.8b4907d5.chunk.js",
+    "main.js.map": "/star-wars-films/static/js/main.8b4907d5.chunk.js.map",
     "runtime-main.js": "/star-wars-films/static/js/runtime-main.24e24bb8.js",
     "runtime-main.js.map": "/star-wars-films/static/js/runtime-main.24e24bb8.js.map",
-    "static/js/2.6d13af39.chunk.js": "/star-wars-films/static/js/2.6d13af39.chunk.js",
-    "static/js/2.6d13af39.chunk.js.map": "/star-wars-films/static/js/2.6d13af39.chunk.js.map",
+    "static/js/2.fd26e16c.chunk.js": "/star-wars-films/static/js/2.fd26e16c.chunk.js",
+    "static/js/2.fd26e16c.chunk.js.map": "/star-wars-films/static/js/2.fd26e16c.chunk.js.map",
     "index.html": "/star-wars-films/index.html",
-    "precache-manifest.ed5a2b0cfa0f4c77d1f3d4d153d1087a.js": "/star-wars-films/precache-manifest.ed5a2b0cfa0f4c77d1f3d4d153d1087a.js",
+    "precache-manifest.5b49adeeef381bfda18fd8c6210dc664.js": "/star-wars-films/precache-manifest.5b49adeeef381bfda18fd8c6210dc664.js",
     "service-worker.js": "/star-wars-films/service-worker.js",
     "static/css/main.d599a5be.chunk.css.map": "/star-wars-films/static/css/main.d599a5be.chunk.css.map",
-    "static/js/2.6d13af39.chunk.js.LICENSE.txt": "/star-wars-films/static/js/2.6d13af39.chunk.js.LICENSE.txt",
+    "static/js/2.fd26e16c.chunk.js.LICENSE.txt": "/star-wars-films/static/js/2.fd26e16c.chunk.js.LICENSE.txt",
     "static/media/episode1.jpg": "/star-wars-films/static/media/episode1.4c86c3df.jpg",
     "static/media/episode2.jpg": "/star-wars-films/static/media/episode2.74375f3f.jpg",
     "static/media/episode3.jpg": "/star-wars-films/static/media/episode3.5256d4c3.jpg",
@@ -21,8 +21,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.24e24bb8.js",
-    "static/js/2.6d13af39.chunk.js",
+    "static/js/2.fd26e16c.chunk.js",
     "static/css/main.d599a5be.chunk.css",
-    "static/js/main.04447b43.chunk.js"
+    "static/js/main.8b4907d5.chunk.js"
   ]
 }
