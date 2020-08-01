@@ -8,5 +8,6 @@ export const getFilmsAPI = () => {
     return instance.get('films/')
 }
 export const getSomethingAPI = (url) => {
-    return axios.get(url)
+    const endpoint = url.split('').splice(21,30).join('')
+    return instance.get(endpoint)
 }
