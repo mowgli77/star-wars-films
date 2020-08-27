@@ -21,9 +21,9 @@ const Header = (props) => {
         props.sortFilmsByZYX()
     }
     const dontSort = () => {
-        setDontSortIsActive(false)
-        setABCSortisActive(true)
-        setZYXSortisActive(true)
+        setDontSortIsActive(true)
+        setABCSortisActive(false)
+        setZYXSortisActive(false)
         props.getFilmsThunk()
     }
 
