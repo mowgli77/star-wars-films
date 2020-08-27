@@ -23,11 +23,6 @@
     color: #343232;
     cursor: pointer;
 }
-.header__button_active{
-    font-weight: bold;
-    color: grey;
-
-}
 .films-list {
     display: flex;
     justify-content: space-between;
