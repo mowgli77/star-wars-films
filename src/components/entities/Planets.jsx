@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ItemOk from "../common/ItemOk";
 import {connect} from "react-redux";
-import {getEpisodePlanetsThunk} from "../../redux/reducer";
+import {getEpisodePlanetsThunk} from "../../redux/actions";
 
 
 const Planets = ({film, ...props}) => {
@@ -12,7 +12,7 @@ const Planets = ({film, ...props}) => {
 
     const providePlanets = () => {
         setPlanetsInfo(!isPlanets)
-        film.planets.map(u => props.getEpisodePlanetsThunk(u))
+        film.planets.forEach(u => props.getEpisodePlanetsThunk(u))
     }
     const viewPlanet = (planetName) => {
         setPlanetName(planetName)

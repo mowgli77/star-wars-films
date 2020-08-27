@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
-import {getFilmsThunk} from "../redux/reducer";
 import FilmItem from "./FilmItem";
+import {getFilmsThunk, sortFilmsByABC, sortFilmsByZYX} from "../redux/actions";
+import Header from "./Header";
+
 
 const FilmsList = (props) => {
 
@@ -34,11 +36,12 @@ const FilmsList = (props) => {
 
     return (
         <div>
-            <header className="header">
-                <div className={"header__search"}>
-                    <input placeholder={'Search film'} type={'text'} onKeyUp={searchText} />
-                </div>
-            </header>
+            <Header searchText={searchText}
+                    sortFilmsByABC={props.sortFilmsByABC}
+                    sortFilmsByZYX={props.sortFilmsByZYX}
+                    getFilmsThunk={props.getFilmsThunk}
+
+            />
             <div className={"films-list"}>
                 {currentFilms.map(f => <FilmItem key={f.episode_id}
                                                  film={f}
@@ -56,7 +59,6 @@ const mapStateToProps = (state) => ({
     images: state.star.images
 })
 
-
-export default connect(mapStateToProps, {
-    getFilmsThunk
-})(FilmsList);
+export default connect(mapStateToProps,
+    {getFilmsThunk, sortFilmsByABC, sortFilmsByZYX}
+)(FilmsList);

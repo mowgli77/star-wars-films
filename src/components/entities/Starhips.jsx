@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ItemOk from "../common/ItemOk";
 import {connect} from "react-redux";
-import {getEpisodeStarshipsThunk} from "../../redux/reducer";
+import {getEpisodeStarshipsThunk} from "../../redux/actions";
 
 
 const Starships = ({film, ...props}) => {
@@ -12,7 +12,7 @@ const Starships = ({film, ...props}) => {
 
     const provideCharacters = () => {
         setStarshipInfo(!isStarship)
-        film.starships.map(u => props.getEpisodeStarshipsThunk(u))
+        film.starships.forEach(u => props.getEpisodeStarshipsThunk(u))
     }
     const viewCharacter = (characters) => {
         setStarshipName(characters)

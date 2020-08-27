@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ItemOk from "../common/ItemOk";
 import {connect} from "react-redux";
-import {getEpisodeCharactersThunk} from "../../redux/reducer";
+import {getEpisodeCharactersThunk} from "../../redux/actions";
 
 
 const Characters = ({film, ...props}) => {
@@ -12,7 +12,7 @@ const Characters = ({film, ...props}) => {
 
     const provideCharacters = () => {
         setCharactersInfo(!isCharacter)
-        film.characters.map(u => props.getEpisodeCharactersThunk(u))
+        film.characters.forEach(u => props.getEpisodeCharactersThunk(u))
     }
     const viewCharacter = (characters) => {
         setCharacterName(characters)

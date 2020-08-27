@@ -1,18 +1,18 @@
-import {getFilmsAPI, getSomethingAPI} from "../API/api";
 import episode1 from "../images/episode1.jpg"
 import episode2 from "../images/episode2.jpg"
 import episode3 from "../images/episode3.jpg"
 import episode4 from "../images/episode4.jpg"
 import episode5 from "../images/episode5.jpg"
 import episode6 from "../images/episode6.jpg"
-
-const GET_FILMS = 'GET_FILMS';
-const EPISODE_PLANETS = 'EPISODE_PLANETS'
-const EPISODE_CHARACTERS = 'EPISODE_CHARACTERS'
-const EPISODE_STARHIPS = 'EPISODE_STARHIPS'
-const EPISODE_VEHICLE = 'EPISODE_VEHICLE'
-const EPISODE_SPECIES = 'EPISODE_SPECIES'
-
+import {
+    EPISODE_CHARACTERS,
+    EPISODE_PLANETS,
+    EPISODE_SPECIES,
+    EPISODE_STARHIPS,
+    EPISODE_VEHICLE,
+    GET_FILMS,
+    SORT_FILMS_BY_ABC, SORT_FILMS_BY_ZYX
+} from "./types";
 
 let initialState = {
     films: [],
@@ -62,75 +62,34 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 episodeSpecies: state.episodeSpecies.some(p => p.name === action.species.name) ? state.episodeSpecies : [...state.episodeSpecies, action.species]
             }
+        case SORT_FILMS_BY_ABC:
+            return {
+                ...state,
+                films: [...state.films].sort((film1, film2) => {
+                    if (film1.title > film2.title) {
+                        return 1
+                    }
+                    if (film1.title < film2.title) {
+                        return -1
+                    }
+                    return 0
+                })
+            }
+        case SORT_FILMS_BY_ZYX:
+            return {
+                ...state,
+                films: [...state.films].sort((film1, film2) => {
+                    if (film1.title < film2.title) {
+                        return 1
+                    }
+                    if (film1.title > film2.title) {
+                        return -1
+                    }
+                    return 0
+                })
+            }
 
         default:
             return state;
-    }
-}
-
-export const actions = {
-    getFilms: (films) => ({type: GET_FILMS, films}),
-    getPlanets: (planet) => ({type: EPISODE_PLANETS, planet}),
-    getCharacters: (character) => ({type: EPISODE_CHARACTERS, character}),
-    getStarships: (starship) => ({type: EPISODE_STARHIPS, starship}),
-    getVehicles: (vehicle) => ({type: EPISODE_VEHICLE, vehicle}),
-    getSpecies: (species) => ({type: EPISODE_SPECIES, species}),
-}
-
-export const getFilmsThunk = () => async (dispatch) => {
-    try {
-        let result = await getFilmsAPI()
-        let sortFilms = result.data.results.sort((film1, film2) => {
-            if (film1.title > film2.title) {
-                return 1
-            }
-            if (film1.title < film2.title) {
-                return -1
-            }
-            return 0
-        })
-        dispatch(actions.getFilms(sortFilms))
-    } catch (e) {
-        alert(e)
-    }
-}
-export const getEpisodePlanetsThunk = (url) => async (dispatch, getState) => {
-    if (getState().star.episodePlanets.some(p => p.url === url)) {
-        return undefined
-    } else {
-        let result = await getSomethingAPI(url)
-        dispatch(actions.getPlanets(result.data))
-    }
-}
-export const getEpisodeCharactersThunk = (url) => async (dispatch, getState) => {
-    if (getState().star.episodeCharacters.some(p => p.url === url)) {
-        return undefined
-    } else {
-        let result = await getSomethingAPI(url)
-        dispatch(actions.getCharacters(result.data))
-    }
-}
-export const getEpisodeStarshipsThunk = (url) => async (dispatch, getState) => {
-    if (getState().star.episodeStarships.some(p => p.url === url)) {
-        return undefined
-    } else {
-        let result = await getSomethingAPI(url)
-        dispatch(actions.getStarships(result.data))
-    }
-}
-export const getEpisodeVehiclesThunk = (url) => async (dispatch, getState) => {
-    if (getState().star.episodeVehicles.some(p => p.url === url)) {
-        return undefined
-    } else {
-        let result = await getSomethingAPI(url)
-        dispatch(actions.getVehicles(result.data))
-    }
-}
-export const getEpisodeSpeciesThunk = (url) => async (dispatch, getState) => {
-    if (getState().star.episodeSpecies.some(p => p.url === url)) {
-        return undefined
-    } else {
-        let result = await getSomethingAPI(url)
-        dispatch(actions.getSpecies(result.data))
     }
 }

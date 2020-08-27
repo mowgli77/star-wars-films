@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ItemOk from "../common/ItemOk";
 import {connect} from "react-redux";
-import {getEpisodeVehiclesThunk} from "../../redux/reducer";
+import {getEpisodeVehiclesThunk} from "../../redux/actions";
 
 
 const Vehicles = ({film, ...props}) => {
@@ -12,7 +12,7 @@ const Vehicles = ({film, ...props}) => {
 
     const provideCharacters = () => {
         setVehiclesInfo(!isVehicles)
-        film.vehicles.map(u => props.getEpisodeVehiclesThunk(u))
+        film.vehicles.forEach(u => props.getEpisodeVehiclesThunk(u))
     }
     const viewCharacter = (characters) => {
         setVehiclesName(characters)
